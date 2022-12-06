@@ -1,0 +1,13 @@
+.demo-inline-calendar-card {
+    width: 300px;
+  }
+  form{
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  @media screen and (max-width: 600px) {
+    .md-3, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }

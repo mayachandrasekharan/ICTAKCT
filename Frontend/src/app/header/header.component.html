@@ -1,0 +1,13 @@
+<div class="nav-container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <img src="../../assets/images/logo (2).png" alt="Image" />
+            <h3 style="color: whitesmoke; margin-left: 5px;">ICTAK</h3>
+            
+        </div>
+        <div> <a class="nav-link" routerLink="/" (click)="logout()" *ngIf="this.loginservice.loggedIn()">Logout</a></div>
+    </nav>
+</div>
