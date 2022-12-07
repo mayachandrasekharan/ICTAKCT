@@ -20,8 +20,8 @@ app.use('/api',api);
 const requirement = require('./routes/requirement');
 app.use('/requirement',requirement);
 
-// const response = require('./routes/apiresponse');
-// app.use('/apiresponse',response)
+const response = require('./routes/response');
+app.use('/response',response)
 
 //connection to server
 const PORT=3000;
