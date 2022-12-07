@@ -10,12 +10,6 @@ var signupSchema = new Schema({
     username:{
         type:String
     },
-    gender:{
-        typr:String
-    },
-    dob:{
-        type:Date
-    },
     phone:{
         type:Number
     },

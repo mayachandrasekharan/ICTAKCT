@@ -33,7 +33,7 @@ function verifyToken(req,res,next){
 // route("/getusers")
 router.get("/getusers",(req,res)=>{
     try{
-users.find()
+signupdata.find()
 .then(data=>{
     res.send(data);
 })
@@ -49,8 +49,6 @@ try{
 var user ={
     name: req.body.user.name,
     username: req.body.user.email,
-    gender:req.body.user.gender,
-    dob: req.body.user.dob,
     phone: req.body.user.phone,
     password: req.body.user.password,
     confirm_password:req.body.user.confirmPassword
@@ -98,7 +96,7 @@ router.post('/login',(req,res)=>{
             message:'Usename can not be empty !'
         });
     }
-    logindata.findOne({username:req.body.user.email, password:req.body.user.password},(err,user)=>{
+    user.findOne({username:req.body.user.email, password:req.body.user.password},(err,user)=>{
 
          if(!user)
              {
