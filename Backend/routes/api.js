@@ -30,6 +30,19 @@ function verifyToken(req,res,next){
     next();
 }
 
+// route("/getusers")
+router.get("/getusers",(req,res)=>{
+    try{
+users.find()
+.then(data=>{
+    res.send(data);
+})
+    }
+    catch(error){
+        console.log(error);
+    }
+});
+
 //signup
 router.post('/signup',async(req,res)=>{
 try{
