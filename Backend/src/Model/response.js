@@ -30,8 +30,10 @@ const responseSchema = new Schema({
     },
     resfile:{
         type: String
+    },
+    filePath: {
+        type: String
     }
-
 }, {timestamps: true});
 
 let ResponseDATA = mongoose.model('responsedetail', responseSchema)
