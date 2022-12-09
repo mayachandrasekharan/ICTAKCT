@@ -9,12 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  genders: string[] = ['Male','Female','Others'];
-  selected!: Date | null;
   registerForm!: FormGroup;
   submitted = false;
   user={
-    name:"",
     username:"",
     gender:"",
     dob:"",
