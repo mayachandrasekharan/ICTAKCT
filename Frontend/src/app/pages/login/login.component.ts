@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user={
-    username:"",
+    email:"",
     password:""
   }
   message:any
@@ -23,13 +23,24 @@ export class LoginComponent implements OnInit {
   loginUser(){
     this.loginservice.login(this.user).subscribe(res=>{
        this.id = JSON.parse(JSON.stringify(res.token));
-       localStorage.setItem('userToken',this.id);
-      
-        this.route.navigate(["/faculty-home"]),
-        (    err: { message: any; error: { message: any; }; })=>{
-      console.log(err.message);
-      this.message = err.error.message;
-    }
-  })
+       if(res.message){
+        alert(res.message)
+      }
+     else  if (res.email == "admin1234@gmail.com" && res.password =="Admin@1234" ){
+      localStorage.setItem('userToken',this.id);
+  
+        alert("Admin has successfully logged in")
+        this.route.navigate(['/admin'])
+  
+       }
+       else{
+        localStorage.setItem('userToken',this.id);
+  
+        alert("Faculty has successfully logged in")
+  
+        this.route.navigate(['/faculty-home'])
+  
+       }
+   })
 }
 }

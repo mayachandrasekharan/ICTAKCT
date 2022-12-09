@@ -1,68 +1,57 @@
 
  
 <div class="container" >
-    <form class="example-form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+    <form class="example-form" (ngSubmit)="onSubmit()" #userlogin="ngForm" >
     <mat-card>
           <h1>Sign Up</h1>
       <div class="row"  >
           <div class="mb-3">
                   <mat-form-field class="example-full-width" appearance="fill" style="width:100% ;">
                     <mat-label>Name</mat-label>
-                    <input matInput placeholder="Type your name here !" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
-                    <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
-                      <div *ngIf="f['name'].errors['required']">Name is required</div>
-                  </div>
+                    <input matInput placeholder="Type your name here !" class="form-control" name="name" [(ngModel)]="user.name"
+                    [class.is-invalid]="name.invalid && name.touched" #name="ngModel" required>
+                      <div [class.d-none]="name.valid||name.untouched">Name is required</div>
                   </mat-form-field> 
           </div>
           <div class="mb-3">
               <mat-form-field class="example-full-width" appearance="fill" style="width:100% ;">
-                <mat-label>Username</mat-label>
-                <input matInput placeholder="abc@mail.com" required class="form-control" formControlName="username"[ngClass]="{ 'is-invalid': submitted && f['email'].errors }" class="FormControl">
-                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-                  <div *ngIf="f['email'].errors['required']">Email is required</div>
-                  <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
-              </div>
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="abc@mail.com" type="email" class="form-control" [(ngModel)]="user.email" name="email"
+                #email="ngModel" [class.is-invalid]="email.invalid && email.touched"
+                id="exampleInputEmail1"  required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                  <div [class.d-none]="email.valid || email.untouched">Email must be a valid email address</div>
               </mat-form-field> 
           </div>
                   <div class="mb-3">
               <mat-form-field class="example-full-width" appearance="fill" style="width:100% ;">
                 <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" (keypress)="keyPress($event)" required type="text" formControlName="phonenumber" class="form-control" placeholder="Enter Your phone Number" [ngClass]="{ 'is-invalid': submitted && f['phonenumber'].errors }" >
-               <div *ngIf="submitted && f['phonenumber'].errors" class="invalid-feedback">
-      <div *ngIf="f['phonenumber'].errors && f['phonenumber'].errors['required']">Phone number is required</div>
-      <div *ngIf="f['phonenumber'].errors && f['phonenumber'].errors['pattern'] || f['phonenumber'].errors && f['phonenumber'].errors['maxlength'] || f['phonenumber'].errors && f['phonenumber'].errors['minlength']">Phone number must be at least 10 numbers</div>
-               </div>
+                <input matInput placeholder="Phone Number" type="text" (keypress)="keyPress($event)" class="form-control" name="Phonenumber" [(ngModel)]="user.phonenumber"
+                [class.is-invalid]="phonenumber.invalid && phonenumber.touched" #phonenumber="ngModel"
+                required >
+      <div [class.d-none]="phonenumber.valid||phonenumber.untouched">Phone number is required</div>
+
               </mat-form-field> 
       </div>
       <div class="mb-3">
           <mat-form-field class="example-full-width" appearance="fill" style="width:100% ;">
             <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="********" class="form-control" required formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" >
-            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-              <div *ngIf="f['password'].errors['required']">Password is required</div>
-              <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
-          </div>
+            <input matInput type="password" placeholder="********" class="form-control" [(ngModel)]="user.password"
+            name="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" required minlength="8">
+              <div [class.d-none]="password.valid || password.untouched">Password invalid</div>
           </mat-form-field> 
       </div>
       <div class="mb-3">
           <mat-form-field class="example-full-width" appearance="fill" style="width:100% ;">
             <mat-label>Confirm Password</mat-label>
-            <input matInput type="password" placeholder="********" class="form-control" required formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }">
-            <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
-              <div *ngIf="f['confirmPassword'].errors['required']">Confirm Password is required</div>
-              <div *ngIf="f['confirmPassword'].errors['mustMatch']">Passwords must match</div>
-          </div>
-          </mat-form-field> 
+            <input matInput type="password" placeholder="********" class="form-control" (keypress)="MustMatch(user.password,user.confirmpassword)" required formControlName="confirmPassword" >
+            </mat-form-field> 
       </div>
       <mat-label style="color: red; font-size:smaller">fields marked with * are mandatory!</mat-label>
       <div class="mb-3" style=" display: table-cell; width: 490px; padding-left: 8rem;">
-          <button mat-raised-button style="border-radius: 6px; margin-left: 90px; margin-right:50px; color: white;background-color: black;  ">Sign Up</button>
-          <button mat-raised-button style="border-radius: 6px;background-color: black;"><a href="login" style="color: white;text-decoration:none;">Log in</a> </button>
+          <button mat-raised-button style="border-radius: 6px; margin-right:50px; color: white;background-color: black;  ">Sign Up</button>
+          <button mat-raised-button style="border-radius: 6px;background-color: black;"><a routerLink="/login" style="color: white;text-decoration:none;">Log in</a></button>
       </div>
       </div>
-      <!-- <div class="mb-3" style=" display: inline; width: 490px; padding-left: 8rem;">
-       
-    </div> -->
     </mat-card>  
     </form>
   </div>

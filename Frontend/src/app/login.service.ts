@@ -9,22 +9,16 @@ export class LoginService {
   constructor(private http:HttpClient) { }
   server_address: string = 'http://localhost:3000/api';
   
-  getusers(){
-    return this.http.get(`${this.server_address}/getusers`);
-  }
+ 
 
   signup(user:any){
     console.log(user)
-    return this.http.post(`${this.server_address}/signup`,{"user":user})
-    .subscribe(()=>{
-      console.log("Success")
-    })
-  }
+    return this.http.post(`${this.server_address}/signup`,user)
+     }
 
   login(user:any){
-    return this.http.post<any>(`${this.server_address}/login`,{"user":user});
+    return this.http.post<any>(`${this.server_address}/login`,user);
   }
-
   loggedIn(){
     return !! localStorage.getItem('userToken');
   }

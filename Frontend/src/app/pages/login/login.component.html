@@ -3,18 +3,21 @@
     <div class="container">
       <h1>Log in</h1>
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Username</label>
-        <input type="text" [(ngModel)]="user.username" #name="ngModel" name="email"  [class.is-invalid]="name.invalid && name.touched" [class.is-valid]="name.valid" required
+        <label for="exampleInputEmail1" class="form-label">Email</label>
+        <input type="email" [(ngModel)]="user.email" #email="ngModel" name="email"  [class.is-invalid]="email.invalid && email.touched" [class.is-valid]="email.valid" required
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div [class.d-none]="email.valid || email.untouched" style="color:red">Email Invalid !</div>
       </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="user.password"  #pwd="ngModel"
-        [class.is-invalid]="pwd.invalid && pwd.touched" [class.is-valid]="pwd.valid" required
+        <input type="password" class="form-control" name="password" [(ngModel)]="user.password"  #password="ngModel"
+        [class.is-invalid]="password.invalid && password.touched" [class.is-valid]="password.valid"  required  minlength="8"
          id="exampleInputPassword1">
+         <div [class.d-none]="password.valid || password.untouched" style="color:red">Password Invalid !</div>
       </div>
       <button type="submit" class="btn btn-dark">Login</button>
       <br>
-                      <p class="mt-4">Don't have an account?<a href="signup" class="" style="text-decoration: none;"> Sign Up</a> </p>
+                      <p class="mt-4">Don't have an account?<a routerLink="/signup" class="" style="text-decoration: none;"> Sign Up</a> </p>
     </div>
   </form>

@@ -14,9 +14,6 @@ import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginService } from './login.service';
@@ -44,10 +41,7 @@ import { FacultyHomeComponent } from './pages/faculty-home/faculty-home.componen
     MatFormFieldModule,
     MatTableModule,
     BrowserAnimationsModule,
-    MatRadioModule,
     FormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatButtonModule
     
   ],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/login.service';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,25 +9,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  registerForm!: FormGroup;
-  submitted = false;
-  user={
-    username:"",
-    gender:"",
-    dob:"",
-    phone:"",
-    password: "",
-    repassword:""
-  }
-  Users:any;
-  error:any;
-  flag:any
-  
-  constructor(private formBuilder: FormBuilder,private loginservice:LoginService,private route:Router) { }
-  
-  
 
-  //only number will be add
+  user={
+    'name':"",
+    'email':"",
+    'phonenumber':"",
+    'password': "",
+    'confirmpassword':""
+  }
+ message:any;
+  
+  constructor(private loginservice:LoginService,private route:Router) { }
+  
+  ngOnInit(): void {
+   
+  }
+ 
+  //only number will be add (keypress)="keyPress($event)"
   keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -35,52 +33,22 @@ export class SignupComponent implements OnInit {
       event.preventDefault();
     }
   }
-  ngOnInit(): void {
-    try{
-    this.loginservice.getusers()
-    .subscribe((data: any)=>{
-    console.log("🚀 ~ file: signup.component.ts ~  ~ SignupComponent ~ ngOnInit ~ data", data)
-      this.Users = JSON.parse(JSON.stringify(data));
-    })
-  
-    this.registerForm = this.formBuilder.group({
-      name:['',[Validators.required,Validators.minLength(2),Validators.pattern("[a-zA-Z].*")]],
-      username: ['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      phonenumber: ['', [ Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10), Validators.maxLength(10)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-        },{validator: this.MustMatch('password', 'confirmPassword')} as AbstractControlOptions);
-          }
-          catch(error){
-            console.log(error);
-          }
-  }
-  color(){
-
-  }
- // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
   onSubmit() {
     try{
-      console.log(this.user);
-      if(this.Users.length>=0){
-        for(var i=0;i<this.Users.length;i++)
-        {
-          if(this.Users[i].username==this.user.username)
-          {
-            this.flag=true;
-            this.error = "username already exist";
-            break;
-          }
-          else
-          this.flag=false;
-          this.loginservice.signup(this.user);
-          console.log("signup called");
-          this.route.navigate(['/login']);
+      console.log(this.user)
+      this.loginservice.signup(this.user).subscribe(data=>{
+        this.user= JSON.parse(JSON.stringify(data));
+          if(data){
+          alert("error!!!")
+          this.route.navigate(['/signup'])
   
+  
+        }else{
+          alert("registered successfully");
+          this.route.navigate(['/login'])
         }
-        }
-      }
+      })
+    }
         catch(error){
           console.log(error);
         }     
