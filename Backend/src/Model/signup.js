@@ -7,7 +7,7 @@ var signupSchema = new Schema({
         type:String,
         unique:true
     },
-    username:{
+    email:{
         type:String
     },
     phone:{
@@ -16,7 +16,7 @@ var signupSchema = new Schema({
     password:{
         type:String
     },
-    confirm_password:{
+    confirmPassword:{
         type:String
     }
 

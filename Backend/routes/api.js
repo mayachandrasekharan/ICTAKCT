@@ -3,7 +3,7 @@ const router = express.Router() //routing function
 const jwt = require('jsonwebtoken');
  
 
-//const logindata = require('../src/Model/login');
+// const logindata = require('../src/Model/login');
 const signupdata = require('../src/Model/signup');
 
 function verifyToken(req,res,next){
@@ -30,101 +30,67 @@ function verifyToken(req,res,next){
     next();
 }
 
-// route("/getusers")
-router.get("/getusers",(req,res)=>{
-    try{
-signupdata.find()
-.then(data=>{
-    res.send(data);
-})
-    }
-    catch(error){
-        console.log(error);
-    }
-});
+// // route("/getusers")
+// router.get("/getusers",(req,res)=>{
+//     try{
+// signupdata.find()
+// .then(data=>{
+//     res.send(data);
+// })
+//     }
+//     catch(error){
+//         console.log(error);
+//     }
+// });
 
 //signup
 router.post('/signup',async(req,res)=>{
 try{
-var user ={
+ let item ={
     name: req.body.user.name,
-    username: req.body.user.email,
+    email: req.body.user.email,
     phone: req.body.user.phone,
     password: req.body.user.password,
-    confirm_password:req.body.user.confirmPassword
+    confirmPassword:req.body.user.confirmPassword
 }    
 console.log(user);
-signupdata.findOne({username: req.body.user.email})
-    if(user){
-        return res.status(401).json({
-            message: 'Username already exists....Please choose another username !'
-            
-        });
-    }
-    else
-            {
-                const newUser=new signupdata(user)
-                newUser.save((error,data)=>{
-                    if(error)
-                    {
-                        res.json({"status":"error"})
-                    }
-                    else{
-                        res.json({"status":"success","data":data})
-                    }
-                })
-                
-            }
+
+let user = await signupdata.findOne({ email: req.body.email })
+if (!user) {
+    const newuser = new signupdata(item)
+    const saveuser = await newuser.save()
+    res.send(saveuser)
+}
+return res.json({ message: "Email already registered" });
+} catch (error) {
+console.log(error)
 }
 
-catch(error){
-    console.log(error);
-
-}
-
+})
+router.get((req,res)=>{
+    res.send("Hello")
 })
 
 
 //login
-router.post('/login',(req,res)=>{
-   try{
-    let username = req.body.user.email;
-    let password = req.body.user.password;
-    if(username==' ')
-    {
-        res.status(401).json({
-            message:'Usename can not be empty !'
-        });
-    }
-    user.findOne({username:req.body.user.email, password:req.body.user.password},(err,user)=>{
+router.post('/login',async(req,res)=>{
+    try {
+        let user = await signupdata.findOne({ email: req.body.email, password: req.body.password })
+        let payload = {'email':req.body.email,'password':req.body.password}
+        let token = jwt.sign(payload,'secretkey')
 
-         if(!user)
-             {
-        res.status(401).json({
-            message:"User not found !"
-        });
-    }
-    console.log(username);
-    console.log(password);
-    
-if(password!=user,password){
-    res.status(401).json({
-        message:"Invalid login credentials"
-    });
-}
-else{
-    let payload = {subject:username+password};
-            let token = jwt.sign(payload,"secretkey");
-            console.log("🚀 ~ file: app.js ~ line 104 ~ logindata.findOne ~ token", token)
-            console.log("🚀 ~ file: app.js ~ line 104 ~ logindata.findOne ~ payload", payload)
-            console.log(token);
-            res.status(200).send({token});
-}
-})
-}
-catch
-    (error){
-            console.log(error);
+        if (!user) {
+            
+            return res.json({ message: "Invalid Credentials" });
+
+
+        }
+        // res.send(user)
+        res.send({ 'token': token, 'email': user.email, 'password': user.password });
+
+
+    } catch (error) {
+        console.log(error)
     }
 })
 
