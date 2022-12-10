@@ -21,20 +21,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   loginUser(){
+    try{
     this.loginservice.login(this.user).subscribe(res=>{
-       this.id = JSON.parse(JSON.stringify(res.token));
        if(res.message){
         alert(res.message)
       }
      else  if (res.email == "admin1234@gmail.com" && res.password =="Admin@1234" ){
-      localStorage.setItem('userToken',this.id);
+      localStorage.setItem('token',this.id);
   
         alert("Admin has successfully logged in")
         this.route.navigate(['/admin'])
   
        }
        else{
-        localStorage.setItem('userToken',this.id);
+        localStorage.setItem('token',this.id);
   
         alert("Faculty has successfully logged in")
   
@@ -43,4 +43,8 @@ export class LoginComponent implements OnInit {
        }
    })
 }
+catch(error){
+  console.log(error)
+}
+  }
 }

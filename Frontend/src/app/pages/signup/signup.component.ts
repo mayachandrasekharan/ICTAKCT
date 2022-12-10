@@ -15,7 +15,6 @@ export class SignupComponent implements OnInit {
     'email':"",
     'phonenumber':"",
     'password': "",
-    'confirmpassword':""
   }
  message:any;
   
@@ -33,19 +32,19 @@ export class SignupComponent implements OnInit {
       event.preventDefault();
     }
   }
+ 
   onSubmit() {
     try{
       console.log(this.user)
-      this.loginservice.signup(this.user).subscribe(data=>{
-        this.user= JSON.parse(JSON.stringify(data));
-          if(data){
-          alert("error!!!")
-          this.route.navigate(['/signup'])
-  
+      this.loginservice.signup(this.user).subscribe(res=>{
+        
+        if(res.message){
+          alert(res.message);
+          this.route.navigate(['/signup']);
   
         }else{
           alert("registered successfully");
-          this.route.navigate(['/login'])
+          this.route.navigate(['/login']);
         }
       })
     }
@@ -55,25 +54,7 @@ export class SignupComponent implements OnInit {
   
     }
 
- MustMatch(controlName: string, matchingControlName: string) {
-  return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-
-      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-          // return if another validator has already found an error on the matchingControl
-          return;
-      }
-
-      // set error on matchingControl if validation fails
-      if (control.value !== matchingControl.value) {
-          matchingControl.setErrors({ mustMatch: true });
-      } else {
-          matchingControl.setErrors(null);
-      }
-  }
-}
-
+ 
 
 }
 

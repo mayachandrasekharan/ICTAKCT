@@ -14,7 +14,7 @@ const routes: Routes = [{path:'',component:HomeComponent},
                         {path:'header',component:HeaderComponent},
                         {path:'footer',component:FooterComponent},
                         {path:'faculty-home',canActivate:[AuthGuard],component:FacultyHomeComponent}
-                      ];
+                     ,{path:'',component:LoginComponent} ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

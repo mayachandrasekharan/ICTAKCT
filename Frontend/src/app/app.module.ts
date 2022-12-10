@@ -19,6 +19,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { LoginService } from './login.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { FacultyHomeComponent } from './pages/faculty-home/faculty-home.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { FacultyHomeComponent } from './pages/faculty-home/faculty-home.componen
     
   ],
   providers: [
-    LoginService,
+    LoginService,AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

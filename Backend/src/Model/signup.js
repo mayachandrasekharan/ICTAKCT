@@ -5,21 +5,17 @@ const Schema = mongoose.Schema;
 var signupSchema = new Schema({
     name:{
         type:String,
-        unique:true
+        // unique:true
     },
     email:{
         type:String
     },
-    phone:{
+    phonenumber:{
         type:Number
     },
     password:{
         type:String
-    },
-    confirmPassword:{
-        type:String
     }
-
    
 });
 
