@@ -1,0 +1,72 @@
+
+<form #requireform="ngForm" (ngSubmit)="onSubmit()"></form>
+<div class="col-sm-12">
+    <section class="panel panel-default" >
+     
+      <div class="panel-body">
+          
+        <div class="col-sm-6">
+    <section class="panel panel-default">
+     <header class="panel-heading font-bold">Requirements Entry Form</header>
+      <div class="panel-body">
+        
+      <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Name of Requirement<span class="star">*</span></label>
+                    <input type="text" class="form-control" name="name" id="name" value=""> 
+        </div>
+        <div class="col-md-6"><br>
+            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" name="institute_id" id="institute_id" autofocus tabindex="1">
+             <option value="">Institution/Corporate office</option>
+             <option value="1">Institution</option>
+             <option value="2">Coorporate office</option>
+          
+           </select>
+        </div>
+                <div class="col-md-6">
+                    <label>No. of hours of Training<span class="star">*</span></label>
+                    <input type="text" class="form-control" name="hours" id="hours" value=""> 
+        </div>
+      
+        <div class="col-md-6"><br>
+            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" name="institute_id" id="institute_id" autofocus tabindex="1">
+             <option value="">Area where Training is required</option>
+             <option value="1">FSD</option>
+             <option value="2">ML-AI</option>
+             <option value="3">DSA</option>
+             <option value="4">RPA</option>
+             <option value="5">ST</option>
+             <option value="4">CSA</option>
+           </select>
+        </div>
+ 
+        <div class="col-md-6"><br>
+            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" name="institute_id" id="institute_id" autofocus tabindex="1">
+             <option value="">Category of Requirement</option>
+             <option value="1">Retail</option>
+             <option value="2">Academic</option>
+             <option value="3">Corporate</option>
+            
+           </select>
+        </div>
+        <div>
+          <h4>Upload File</h4>
+          <label>Upload File:</label>
+          <input (change)="onFileSelected($event)" type="file" class="form-control">
+        </div>
+
+    </div>
+    <div class="card-footer" id="crudebtns">
+      <input type="submit" name="Add" id="Add" class="btn btn-success" value="Add"></div>
+                
+      </div>
+            </div>
+          
+      </div>
+    </section>
+        </div>
+    </div>
+    </section>
+</div>
+</form>
