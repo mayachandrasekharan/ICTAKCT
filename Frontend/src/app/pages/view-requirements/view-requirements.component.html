@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<h2>View Requirements</h2>
+<table class="table">
+    <thead class="heading">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Area</th>
+        <th scope="col">Institution/Corporate office</th>
+        <th scope="col">No. of hours</th>
+        <th scope="col">References</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+         <tr *ngFor="let requirement of requirements;let i= index"> 
+             <th scope="row">{{i+1}}</th>
+        <td>{{requirement.name}}</td>
+        <td>{{requirement.area}}</td>
+        <td>{{requirement.hours}}</td>
+        <td>{{requirement.reference}}</td>
+         <td>  
+                
+                <button type="button" (click)="" class="btn btn-success">Response</button>
+            </td>
+
+            
+          </tr>
+      
+    </tbody>
+  </table>
