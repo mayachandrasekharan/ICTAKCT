@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token',this.id);
   
         alert("Admin has successfully logged in")
-        this.route.navigate(['/admin'])
+        this.route.navigate(['/adminhome'])
   
        }
        else{

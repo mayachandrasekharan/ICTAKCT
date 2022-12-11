@@ -17,8 +17,8 @@ app.use(express.urlencoded({extended:true}));
 const api = require('./routes/api');
 app.use('/api',api);
 
-const requirement = require('./routes/requirement');
-app.use('/requirement',requirement);
+// const requirement = require('./routes/requirement');
+// app.use('/requirement',requirement);
 
 const response = require('./routes/response');
 app.use('/response',response)

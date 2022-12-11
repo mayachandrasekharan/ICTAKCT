@@ -20,7 +20,13 @@ import { LoginService } from './login.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { FacultyHomeComponent } from './pages/faculty-home/faculty-home.component';
 import { AuthGuard } from './auth.guard';
-
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { RequireformComponent } from './pages/requireform/requireform.component';
+import { AdminhomeComponent } from './pages/adminhome/adminhome.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ApiserviceService } from './apiservice.service';
+import { ViewRequirementsComponent } from './pages/view-requirements/view-requirements.component';
+import { FacultynavComponent } from './facultynav/facultynav.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +35,13 @@ import { AuthGuard } from './auth.guard';
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    FacultyHomeComponent
+    FacultyHomeComponent,
+    SidenavComponent,
+    RequireformComponent,
+    ViewRequirementsComponent,
+    AdminhomeComponent,
+    NavbarComponent,
+    FacultynavComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +59,7 @@ import { AuthGuard } from './auth.guard';
     
   ],
   providers: [
-    LoginService,AuthGuard,
+    LoginService,AuthGuard,ApiserviceService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

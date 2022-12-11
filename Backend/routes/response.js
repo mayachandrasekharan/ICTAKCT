@@ -2,7 +2,54 @@ const express = require('express')
 const router = express.Router()
 const DATA = require('../src/Model/response')
 const {upload} =require('../middlewares/upload')
+const RequireData = require("../src/Model/requirement");
 
+
+router.get('/singlerequirement/:id', async (req, res) => {
+
+    try{
+        let id = req.params.id;
+        const files = await RequireData.findById(id);
+        res.status(200).send(files);
+    }catch(error) {
+        res.status(400).send(error.message);
+    }
+
+})
+
+router.get("/viewrequirements", (req, res) => {
+    RequireData.find((error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+    });
+  });
+router.post('/addrequirements',upload.single('ref'), async (req, res) => {
+    
+    console.log(req.body)
+        console.log(req.file)
+    
+    try{
+        
+        const file = new RequireData({
+            name: req.body.name,
+            area: req.body.area,
+            ic: req.body.ic,
+            category:req.body.category,
+            hour:req.body.hour,
+          ref:req.file.originalname,
+          filePath: req.file.path
+
+        });
+      let savedData = await file.save();
+        res.status(200).send(savedData);
+        console.log(file)
+    }catch(error) {
+        res.status(400).send(error.message);
+    }
+})
 
 // full list read
 router.get('/listresponse', async (req, res) => {

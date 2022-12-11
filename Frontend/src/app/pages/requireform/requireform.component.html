@@ -1,64 +1,63 @@
-
-<form #requireform="ngForm" (ngSubmit)="onSubmit()"></form>
+<!-- <app-header></app-header> -->
+ <app-navbar></app-navbar>
+ <div class="container pt-5">
+ <form [formGroup]="requireform" (ngSubmit)="onSubmit()">
 <div class="col-sm-12">
-    <section class="panel panel-default" >
+    <section class="panel panel-default">
      
       <div class="panel-body">
           
-        <div class="col-sm-6">
+        <div class="col-sm-12">
     <section class="panel panel-default">
-     <header class="panel-heading font-bold">Requirements Entry Form</header>
+     <header class="panel-heading font-bold" style="color:white;"><h1>Requirements Entry Form</h1></header>
       <div class="panel-body">
         
       <div class="form-group">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6"><br>
                     <label>Name of Requirement<span class="star">*</span></label>
-                    <input type="text" class="form-control" name="name" id="name" value=""> 
+                    <input type="text" class="form-control" formControlName="name" id="name" placeholder="Name of Requirement"> 
         </div>
-        <div class="col-md-6"><br>
-            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" name="institute_id" id="institute_id" autofocus tabindex="1">
+        <div class="col-md-6"><br><br>
+            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" formControlName="ic" id="ic" autofocus tabindex="1">
              <option value="">Institution/Corporate office</option>
-             <option value="1">Institution</option>
-             <option value="2">Coorporate office</option>
+             <option value="Institution">Institution</option>
+             <option value="Coorporate office">Coorporate office</option>
           
            </select>
         </div>
-                <div class="col-md-6">
+                <div class="col-md-6"><br>
                     <label>No. of hours of Training<span class="star">*</span></label>
-                    <input type="text" class="form-control" name="hours" id="hours" value=""> 
+                    <input type="text" class="form-control" formControlName="hour" id="hour" placeholder="No. of hours"> 
         </div>
       
-        <div class="col-md-6"><br>
-            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" name="institute_id" id="institute_id" autofocus tabindex="1">
+        <div class="col-md-6"><br><br>
+            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" formControlName="area" id="area" autofocus tabindex="1">
              <option value="">Area where Training is required</option>
-             <option value="1">FSD</option>
-             <option value="2">ML-AI</option>
-             <option value="3">DSA</option>
-             <option value="4">RPA</option>
-             <option value="5">ST</option>
-             <option value="4">CSA</option>
+             <option value="FSD">FSD</option>
+             <option value="ML-AI">ML-AI</option>
+             <option value="DSA">DSA</option>
+             <option value="RPA">RPA</option>
+             <option value="ST">ST</option>
+             <option value="CSA">CSA</option>
            </select>
         </div>
  
-        <div class="col-md-6"><br>
-            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" name="institute_id" id="institute_id" autofocus tabindex="1">
+        <div class="col-md-6"><br><br>
+            <select class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" formControlName="category" id="category" autofocus tabindex="1">
              <option value="">Category of Requirement</option>
-             <option value="1">Retail</option>
-             <option value="2">Academic</option>
-             <option value="3">Corporate</option>
+             <option value="Retail">Retail</option>
+             <option value="Academic">Academic</option>
+             <option value="Corporate">Corporate</option>
             
            </select>
         </div>
-        <div>
-          <h4>Upload File</h4>
-          <label>Upload File:</label>
-          <input (change)="onFileSelected($event)" type="file" class="form-control">
-        </div>
-
-    </div>
-    <div class="card-footer" id="crudebtns">
-      <input type="submit" name="Add" id="Add" class="btn btn-success" value="Add"></div>
+        
+        <div class="mb-3">
+          <label for="formFile" class="form-label">File upload</label>
+          <input class="form-control" type="file" (change)="onFileSelected($event)" id="formFile" required>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!requireform.valid">Submit</button>
                 
       </div>
             </div>
@@ -70,3 +69,37 @@
     </section>
 </div>
 </form>
+</div>
+<!-- <div class="container pt-5">
+  <form [formGroup]="requireform" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control"  required formControlName="name">
+      </div>
+      <div class="mb-3">
+        <label for="area" class="form-label">Area</label>
+        <input type="text" class="form-control"  formControlName="area" required>
+      </div>
+      <div class="mb-3">
+          <label for="InstituteCoperateOffice" class="form-label">Institute/Coperate Office</label>
+          <input type="text" class="form-control"  formControlName="ic" required>
+      </div>
+      <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <input type="text" class="form-control"  formControlName="category" required>
+      </div>
+      <div class="mb-3">
+          <label for="hour" class="form-label">Hours</label>
+          <input type="text" class="form-control" formControlName="hour" required>
+      </div>
+      <div class="mb-3">
+          <label for="hour" class="form-label">Comment</label>
+          <input type="text" class="form-control" formControlName="comment" required>
+      </div>
+      <div class="mb-3">
+          <label for="formFile" class="form-label">File upload</label>
+          <input class="form-control" type="file" (change)="onFileSelected($event)" id="formFile" required>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!requireform.valid">Submit</button>
+    </form>
+</div> -->

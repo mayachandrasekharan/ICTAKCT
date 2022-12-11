@@ -9,7 +9,7 @@ const RequireSchema = new Schema({
         type: String,
         required: true
     },
-    institution:{
+    ic:{
         type:String,
         required:true
     },
@@ -17,23 +17,24 @@ const RequireSchema = new Schema({
         type:String,
         required:true
     },
-    no_of_hours:{
+    hour:{
         type:Number,
         required:true
     },
-    reference:{
+    ref:{
         type:String,
-        required:true
+       
        
     },
-    comments:{
-        type:String,
+    filePath: {
+        type: String
+    },
+    comment:{
+        type:String
         
     },
-    file: {
-        type:String,
-       
-      
+    resfile: {
+        type:String  
     }
 
 })

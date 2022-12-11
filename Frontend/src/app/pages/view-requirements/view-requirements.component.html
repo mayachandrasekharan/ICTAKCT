@@ -1,26 +1,31 @@
-<app-navbar></app-navbar>
+<app-facultynav></app-facultynav>
 <h2>View Requirements</h2>
-<table class="table">
+<div class="container pt-5">
+<table class="table table-striped">
     <thead class="heading">
-      <tr>
+      <tr class="table-dark" style="text-align:center;">
+        <th scope="col">Sl No.</th>
         <th scope="col">Name</th>
         <th scope="col">Area</th>
         <th scope="col">Institution/Corporate office</th>
+        <th scope="col">Category</th>
         <th scope="col">No. of hours</th>
         <th scope="col">References</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-         <tr *ngFor="let requirement of requirements;let i= index"> 
+         <tr style="text-align:center;" *ngFor="let requirement of requirements;let i= index"> 
              <th scope="row">{{i+1}}</th>
         <td>{{requirement.name}}</td>
         <td>{{requirement.area}}</td>
-        <td>{{requirement.hours}}</td>
-        <td>{{requirement.reference}}</td>
+        <td>{{requirement.ic}}</td>
+        <td>{{requirement.category}}</td>
+        <td>{{requirement.hour}}</td>
+        <td><a href="{{apiservice.fileAddress}}/{{requirement.ref}}" target="_blank">{{requirement.ref}}</a></td>
          <td>  
                 
-                <button type="button" (click)="" class="btn btn-success">Response</button>
+                <button type="button" class="btn btn-success">Response</button>
             </td>
 
             
@@ -28,3 +33,4 @@
       
     </tbody>
   </table>
+</div>
