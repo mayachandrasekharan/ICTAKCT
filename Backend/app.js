@@ -23,6 +23,8 @@ app.use('/requirement',requirement);
 const response = require('./routes/response');
 app.use('/response',response)
 
+app.use('/upload', express.static('upload'))
+
 //connection to server
 const PORT=3000;
 app.listen(PORT, function() {

@@ -18,7 +18,9 @@ router.get('/listresponse', async (req, res) => {
 
 // add
 
-router.post('/addresponse',upload.single('rfile'), async (req, res) => {
+router.post('/addresponse',upload.single('resfile'), async (req, res) => {
+    console.log(req.body)
+    console.log(req.file)
     try{
         
         const file = new DATA({
@@ -31,8 +33,8 @@ router.post('/addresponse',upload.single('rfile'), async (req, res) => {
             resfile:req.file.originalname,
             filePath: req.file.path
         });
-        await file.save();
-        res.status(201).send('File Uploaded Successfully');
+        let savedData= await file.save();
+        res.status(200).send({success:'created successfully'});
     }catch(error) {
         res.status(400).send(error.message);
     }
@@ -54,7 +56,7 @@ router.get('/singleresponse/:id', async (req, res) => {
 
 //edit response
 
-router.put('/editresponse/:id', upload.single('rfile'), async (req,res)=>{
+router.put('/editresponse/:id', upload.single('resfile'), async (req,res)=>{
     try {
         let id=req.params.id
         let item={
@@ -79,6 +81,8 @@ router.put('/editresponse/:id', upload.single('rfile'), async (req,res)=>{
     }
 
 })
+
+
 
 
 
