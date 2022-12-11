@@ -7,7 +7,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AuthGuard } from './auth.guard';
-<<<<<<< Updated upstream
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { RequireformComponent } from './pages/requireform/requireform.component';
 import { AdminhomeComponent } from './pages/adminhome/adminhome.component';
@@ -21,16 +20,10 @@ const routes: Routes = [{path:'',component:HomeComponent},
                         {path:'faculty-home',component:FacultyHomeComponent},
                         {path:'navbar',component:NavbarComponent},
                         {path:'footer',component:FooterComponent},
-<<<<<<< Updated upstream
                         {path:'requireform',component:RequireformComponent},
                         {path:'viewrequirements',component:ViewRequirementsComponent},
                         {path:'adminhome',component:AdminhomeComponent}
                          ];
-=======
-                        {path:'faculty-home',canActivate:[AuthGuard],component:FacultyHomeComponent},
-                        {path:'requireform',canActivate:[AuthGuard],component:RequireformComponent}
-                      ];
->>>>>>> Stashed changes
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

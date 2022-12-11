@@ -1,16 +1,7 @@
-<<<<<<< Updated upstream
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/apiservice.service';
-=======
-import { Component } from '@angular/core';
-import { ApplicationConfig } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthInterceptorService } from 'src/app/auth-interceptor.service';
-import { ApiService } from 'src/app/api.service';
-
->>>>>>> Stashed changes
 @Component({
   selector: 'app-requireform',
   templateUrl: './requireform.component.html',
@@ -59,32 +50,5 @@ export class RequireformComponent implements OnInit{
     this.router.navigate(['/viewrequirements'])
   }
 
-  constructor(private apiservice:ApiService ,
-    private router:Router,
-    private route:ActivatedRoute) { }
-    data={
-      name:'',
-      area:'',
-      institution:'',
-     category:'',
-     no_of_hours:'',
-     reference:'',
-      }
-  ngOnInit(): void {
-}
-file: any;
-requirements:any=[];
-onFileSelected(event : any){
-  if(event.target.files.length > 0){
-     this.file = event.target.files[0];
-  }
-}
-onSubmit() {
  
-    this.apiservice.addBook(this.data).subscribe(res=>{
-      this.requirements=res;
-      alert('successfully added');
-      this.router.navigate(['/requireform'])
-    })
-  }  
 }  
