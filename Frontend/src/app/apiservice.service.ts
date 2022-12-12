@@ -48,4 +48,8 @@ constructor(private http:HttpClient) { }
   editstatus(data:any){
     return this.http.put(`${this.apiUrl}/statusupdate`,data)
   }
+  //get approve curri
+  getcurrfac(){
+    return this.http.get<any>(`${this.apiUrl}/currfac`)
+  }
 }

@@ -167,7 +167,7 @@ router.delete('/deleteresponse/:id',async (req,res)=>{
     }
     
 })
-
+// admin edit
 router.put('/adminedit/:id', async (req,res)=>{
     try {
         let id=req.params.id
@@ -190,7 +190,7 @@ router.put('/adminedit/:id', async (req,res)=>{
     }
 
 })
-
+// status update
 router.put('/statusupdate', async (req, res) => {
     let id = req.body._id
     let item = {  //to fetch and save data from front end in server
@@ -202,6 +202,17 @@ router.put('/statusupdate', async (req, res) => {
     await DATA.findOneAndUpdate({ _id: id }, updateData)
 
     res.json();
+})
+
+//get approve curri
+router.get('/currfac',async(req,res)=>{
+    try{
+        let currfa=await DATA.find({"status":"approved"})
+        res.send(currfa)
+    }
+    catch(error){
+        console.log(error)
+    }
 })
 
 

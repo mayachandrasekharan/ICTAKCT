@@ -1,4 +1,39 @@
 <app-navbar></app-navbar>
-<p>
-  Admin Dashboard
-</p>
+<div class="container pt-5">
+  <div class="form-group">
+      <input type="text"name='searchText' placeholder="Search" [(ngModel)]="searchText" style="width: 50% ; height: 3em;">
+  </div><br>
+  <table class="table" style="text-align:center;">
+      <thead>
+        <tr class="table-dark">
+          <th scope="col">No:-</th>
+          <th scope="col">Name</th>
+          <th scope="col">Area</th>
+          <th scope="col">Inst/Cop</th>
+          <th scope="col">Category</th>
+          <th scope="col">Hours</th>
+          <th scope="col">Comment</th>
+          <th scope="col">File</th>
+        </tr>
+      </thead>
+      <!-- </div> -->
+      <tbody style="color: white;">
+          <tr *ngFor="let resp of result |filter:searchText |paginate:{id:'listing_pagination',itemsPerPage:6,currentPage:page} let i= index" style="text-align: center ;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{resp.name}}</td>
+          <td>{{resp.area}}</td>
+          <td>{{resp.ic}}</td>
+          <td>{{resp.category}}</td>
+          <td>{{resp.hour}}</td>
+          <td>{{resp.comment}}</td>
+          <!-- <td><a href="../../../../../BackEnd/uploads/FSD.pdf" target="_blank">{{resp.resfile}}</a></td> -->
+          <td><a href="{{apiservice.fileAddress}}/{{resp.resfile}}" target="_blank" style="color: yellow;" >{{resp.resfile}}</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <pagination-controls id="listing_pagination" (pageChange)="page = $event"></pagination-controls>
+     
+     </div>
+</div>
+

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -33,6 +34,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { EditresponseComponent } from './pages/editresponse/editresponse.component';
 import { AdmincurriculumComponent } from './pages/admincurriculum/admincurriculum.component';
 import { AdmineditComponent } from './pages/adminedit/adminedit.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,8 +70,10 @@ import { AdmineditComponent } from './pages/adminedit/adminedit.component';
     BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
-    MatIconModule
-    
+    MatIconModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
+
   ],
   providers: [
     LoginService,AuthGuard,ApiserviceService,
