@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<h1 style="color: white ;">Admin Curriculum</h1>
+<div class="container pt-5">
+    <form [formGroup]="adminEditForm" (ngSubmit)="updateForm()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control"  required formControlName="name">
+        </div>
+        <div class="mb-3">
+          <label for="area" class="form-label">Area</label>
+          <input type="text" class="form-control"  formControlName="area" required>
+        </div>
+        <div class="mb-3">
+            <label for="InstituteCoperateOffice" class="form-label">Institute/Cooperate Office</label>
+            <input type="text" class="form-control"  formControlName="ic" required>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input type="text" class="form-control"  formControlName="category" required>
+        </div>
+        <div class="mb-3">
+            <label for="hour" class="form-label">Hours</label>
+            <input type="text" class="form-control" formControlName="hour" required>
+        </div>
+        <div class="mb-3">
+            <label for="hour" class="form-label">Comment</label>
+            <input type="text" class="form-control" formControlName="comment" required readonly>
+        </div>
+        <div class="mb-3">
+            <label for="hour" class="form-label">File</label>
+            <input type="text" class="form-control" formControlName="resfile" required readonly>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!adminEditForm.valid">Submit</button>
+      </form>
+</div>
+

@@ -1,0 +1,35 @@
+<div class="container pt-5">
+    <form [formGroup]="editResponseForm" (ngSubmit)="updateResponse()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control"  required formControlName="name">
+        </div>
+        <div class="mb-3">
+          <label for="area" class="form-label">Area</label>
+          <input type="text" class="form-control"  formControlName="area" required>
+        </div>
+        <div class="mb-3">
+            <label for="InstituteCoperateOffice" class="form-label">Institute/Cooperate Office</label>
+            <input type="text" class="form-control"  formControlName="ic" required>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input type="text" class="form-control"  formControlName="category" required>
+        </div>
+        <div class="mb-3">
+            <label for="hour" class="form-label">Hours</label>
+            <input type="text" class="form-control" formControlName="hour" required readonly>
+        </div>
+        <div class="mb-3">
+            <label for="hour" class="form-label">Comment</label>
+            <input type="text" class="form-control" formControlName="comment" required>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">File upload</label>
+            <input class="form-control" type="file" (change)="onChangeFile($event)" id="formFile" required>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!editResponseForm.valid">Submit</button>
+      </form>
+</div>
+
+

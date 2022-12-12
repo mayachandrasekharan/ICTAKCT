@@ -9,6 +9,7 @@ router.get('/singlerequirement/:id', async (req, res) => {
 
     try{
         let id = req.params.id;
+        console.log(id)
         const files = await RequireData.findById(id);
         res.status(200).send(files);
     }catch(error) {
@@ -50,6 +51,32 @@ router.post('/addrequirements',upload.single('ref'), async (req, res) => {
         res.status(400).send(error.message);
     }
 })
+
+router.put('/editrequirements/:id', async (req,res)=>{
+    try {
+        let id=req.params.id
+        let item={
+            name: req.body.name,
+            area: req.body.area,
+            ic: req.body.ic,
+            category:req.body.category,
+            hour:req.body.hour,
+            comment:req.body.comment
+        }
+        let update={
+            $set:item
+        }
+        const updateRequire=await RequireData.findByIdAndUpdate({'_id':id},update)
+        res.status(200).send(updateRequire)
+        
+    } catch (error) {
+        res.status(400).send(error.message);
+        
+    }
+
+})
+
+
 
 // full list read
 router.get('/listresponse', async (req, res) => {
@@ -127,6 +154,54 @@ router.put('/editresponse/:id', upload.single('resfile'), async (req,res)=>{
         
     }
 
+})
+// delete
+router.delete('/deleteresponse/:id',async (req,res)=>{
+    try {
+        let id=req.params.id
+        const deleteResponse= await DATA.findByIdAndDelete(id)
+        res.send(deleteResponse)
+    } catch (error) {
+        console.log(error)
+        
+    }
+    
+})
+
+router.put('/adminedit/:id', async (req,res)=>{
+    try {
+        let id=req.params.id
+        let item={
+            name: req.body.name,
+            area: req.body.area,
+            ic: req.body.ic,
+            category:req.body.category,
+            hour:req.body.hour
+        }
+        let update={
+            $set:item
+        }
+        const updateResponse=await DATA.findByIdAndUpdate({'_id':id},update)
+        res.status(200).send(updateResponse)
+        
+    } catch (error) {
+        res.status(400).send(error.message);
+        
+    }
+
+})
+
+router.put('/statusupdate', async (req, res) => {
+    let id = req.body._id
+    let item = {  //to fetch and save data from front end in server
+        status: req.body.status,
+
+    }
+    let updateData = { $set: item }
+
+    await DATA.findOneAndUpdate({ _id: id }, updateData)
+
+    res.json();
 })
 
 

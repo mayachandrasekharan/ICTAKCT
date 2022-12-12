@@ -45,9 +45,10 @@ export class RequireformComponent implements OnInit{
     this.fd.append('ref',this.file)
     this.api.addRequirements(this.fd).subscribe(res => {
       console.log(res);
+      alert('Requirement Added Successfully')
       this.refresh();
     })
-    this.router.navigate(['/viewrequirements'])
+    // this.router.navigate(['/viewrequirements'])
   }
 
  

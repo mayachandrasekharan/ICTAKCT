@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   
         alert("Faculty has successfully logged in")
   
-        this.route.navigate(['/faculty-home'])
+        this.route.navigate(['/facultyhome'])
   
        }
    })

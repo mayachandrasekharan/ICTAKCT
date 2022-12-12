@@ -18,7 +18,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginService } from './login.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
-import { FacultyHomeComponent } from './pages/faculty-home/faculty-home.component';
 import { AuthGuard } from './auth.guard';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { RequireformComponent } from './pages/requireform/requireform.component';
@@ -27,6 +26,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ApiserviceService } from './apiservice.service';
 import { ViewRequirementsComponent } from './pages/view-requirements/view-requirements.component';
 import { FacultynavComponent } from './facultynav/facultynav.component';
+import { AddresponseComponent } from './pages/addresponse/addresponse.component';
+import { FacultyhomeComponent } from './pages/facultyhome/facultyhome.component';
+import { PastcurriculumComponent } from './pages/pastcurriculum/pastcurriculum.component';
+import { MatIconModule } from '@angular/material/icon';
+import { EditresponseComponent } from './pages/editresponse/editresponse.component';
+import { AdmincurriculumComponent } from './pages/admincurriculum/admincurriculum.component';
+import { AdmineditComponent } from './pages/adminedit/adminedit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,13 +41,18 @@ import { FacultynavComponent } from './facultynav/facultynav.component';
     FooterComponent,
     LoginComponent,
     SignupComponent,
-    FacultyHomeComponent,
     SidenavComponent,
     RequireformComponent,
     ViewRequirementsComponent,
     AdminhomeComponent,
     NavbarComponent,
-    FacultynavComponent
+    FacultynavComponent,
+    AddresponseComponent,
+    FacultyhomeComponent,
+    PastcurriculumComponent,
+    EditresponseComponent,
+    AdmincurriculumComponent,
+    AdmineditComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +66,8 @@ import { FacultynavComponent } from './facultynav/facultynav.component';
     MatTableModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
     
   ],
   providers: [

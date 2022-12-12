@@ -23,11 +23,11 @@ export class ViewRequirementsComponent {
     })
    
   }
-//   getrequire(id:any){
-//     this.apiservice.getRequirement(this.data).subscribe(res=>{
-//       this.requirements = res;
-// this.router.navigate(['/viewrequirements']);
-
-//     })
-// }
+  getrequire(id:any){
+    this.router.navigate(['/addresponse'],
+    {queryParams:{selected:id}}
+    )
 }
+}
+
+

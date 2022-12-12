@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="container pt-5 table-responsive">
+    <table class="table">
+        <thead>
+          <tr class="table-dark" style="text-align: center ;">
+            <th scope="col">No:-</th>
+            <th scope="col">Name</th>
+            <th scope="col">Area</th>
+            <th scope="col">Inst/Cop</th>
+            <th scope="col">Category</th>
+            <th scope="col">Hours</th>
+            <th scope="col">Comment</th>
+            <th scope="col">file</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <!-- </div> -->
+        <tbody style="color:white ;">
+          <tr *ngFor="let resp of responses; let i= index" style="text-align: center ;">
+            <th scope="row">{{i+1}}</th>
+            <td>{{resp.name}}</td>
+            <td>{{resp.area}}</td>
+            <td>{{resp.ic}}</td>
+            <td>{{resp.category}}</td>
+            <td>{{resp.hour}}</td>
+            <td>{{resp.comment}}</td>
+            <!-- <td><a href="../../../../../BackEnd/uploads/FSD.pdf" target="_blank">{{resp.resfile}}</a></td> -->
+            <td><a href="{{apiservice.fileAddress}}/{{resp.resfile}}" target="_blank" style="color: yellow ;">{{resp.resfile}}</a></td>
+            <td>
+              <button mat-icon-button type="button" class="btn btn-warning btn-sm" (click)="editData(resp._id)">
+                <mat-icon>edit</mat-icon>
+              </button>&nbsp;
+              <button mat-icon-button type="button" class="btn btn-success btn-sm" (click)="submitData(resp._id)">
+                <mat-icon>done</mat-icon>
+              </button>&nbsp;
+              <button mat-icon-button type="button" class="btn btn-danger btn-sm" (click)="deleteData(resp._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
